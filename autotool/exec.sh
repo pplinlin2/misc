@@ -9,7 +9,28 @@ echo_and_exec(){
 	eval $1
 }
 
-echo_and_exec 'autoreconf --install'
-echo_and_exec './configure'
-echo_and_exec 'make'
-echo_and_exec 'src/hello'
+build(){
+	tar -cf .hello.tar . 2>/dev/null
+	echo_and_exec 'autoreconf --install'
+	echo_and_exec './configure'
+	echo_and_exec 'make'
+	echo_and_exec 'src/hello'
+}
+
+clean(){
+	rm * -rf
+	tar -xf .hello.tar
+}
+
+case $1 in
+"build")
+	;& # Fallthrough
+"clean")
+	eval $1
+	;;
+*)
+	${ECHO} "usage:"
+	${ECHO} "  $0 build"
+	${ECHO} "  $0 clean"
+	;;
+esac
