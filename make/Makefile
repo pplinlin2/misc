@@ -14,6 +14,7 @@ target.c: prerequest1 prerequest2 prerequest3
 	@echo $(patsubst prerequest%, prq%, $^)
 	@echo -ne $(CY)'$$(wildcard *.md): '$(CE)
 	@echo $(wildcard *.md)
+	@LANG=en_US ls -l $(foreach file, $(wildcard *.md), $(shell readlink -f $(file)))
 	@echo -ne $(CY)'$$(origin H): '$(CE)
 	@echo $(origin H)
 
