@@ -24,6 +24,8 @@ struct TV lgTV = {
 };
 
 /* libtv.c */
+void tvDomainPowerOn( struct TV *tvPtr){ tvPtr->powerOn() ;}
+void tvDomainPowerOff(struct TV *tvPtr){ tvPtr->powerOff();}
 struct TV *tvConnect(char *tvName)
 {
 	struct TV *ret = NULL;
@@ -37,8 +39,8 @@ struct TV *tvConnect(char *tvName)
 
 void tvTest(struct TV *tvPtr)
 {
-	tvPtr->powerOn();
-	tvPtr->powerOff();
+	tvDomainPowerOn(tvPtr);
+	tvDomainPowerOff(tvPtr);
 }
 
 /* main.c */
